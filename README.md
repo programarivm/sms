@@ -1,4 +1,9 @@
-sms
+SMS
 ===
 
-A Symfony project created on October 31, 2018, 12:51 pm.
+TODO Documentation
+
+The www-data group needs write permissions to the `var` folder:
+
+    sudo chmod 775 -R var
+    sudo chown -R $USER:www-data var
