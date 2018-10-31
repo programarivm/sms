@@ -44,10 +44,12 @@ class DatabaseBootstrapCommand extends ContainerAwareCommand
         $bob->setPassword('password');
 
         $foo = new Message;
+        $foo->setTel('07123456789');
         $foo->setContent('foo');
         $foo->setAuthor($alice);
 
         $bar = new Message;
+        $bar->setTel('07012345678');
         $bar->setContent('bar');
         $bar->setAuthor($bob);
 

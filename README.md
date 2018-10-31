@@ -80,6 +80,7 @@ Example:
 Example:
 
     curl -X POST -i http://localhost:8080/api/message/send --data '{
+        "telephone": "07412345678",
         "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     }'
 
@@ -91,6 +92,7 @@ Example:
 Example:
 
     curl -X POST -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNTQxMDIxNDMyfQ.niozdpQJW-WBsdSNfwkXsPraRbJR8tks4gZhKd9k8Fo' -i http://localhost:8080/api/message/send --data '{
+        "telephone": "07412345678",
         "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     }'
 

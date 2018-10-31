@@ -10,9 +10,10 @@ class HttpStatus200Test extends TokenAuthenticatedWebTestCase
      * @dataProvider data
      * @test
      */
-    public function http_status_200($content)
+    public function http_status_200($telephone, $content)
     {
         $message = [
+            'telephone' => $telephone,
             'content' => $content,
         ];
 
@@ -27,7 +28,7 @@ class HttpStatus200Test extends TokenAuthenticatedWebTestCase
                 'HTTP_AUTHORIZATION' => 'Bearer '.self::$accessToken,
                 'CONTENT_TYPE' => 'application/json',
             ],
-            json_encode($content)
+            json_encode($message)
         );
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
@@ -39,6 +40,7 @@ class HttpStatus200Test extends TokenAuthenticatedWebTestCase
         $messages = json_decode(file_get_contents(__DIR__.'/data/http_status_200.json'))->httpBody;
         foreach ($messages as $message) {
             $data[] = [
+                $message->telephone,
                 $message->content,
             ];
         }

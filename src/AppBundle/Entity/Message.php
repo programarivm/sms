@@ -26,6 +26,13 @@ class Message
      *
      * @ORM\Column(type="text")
      */
+    private $tel;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="text")
+     */
     private $content;
 
     /**
@@ -54,6 +61,22 @@ class Message
     public function getId(): int
     {
         return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTel(): string
+    {
+        return $this->tel;
+    }
+
+    /**
+     * @param string $text
+     */
+    public function setTel(string $tel): void
+    {
+        $this->tel = $tel;
     }
 
     /**
