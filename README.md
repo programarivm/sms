@@ -70,3 +70,31 @@ Example:
         "status": 200,
         "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNTQxMDIxNDMyfQ.niozdpQJW-WBsdSNfwkXsPraRbJR8tks4gZhKd9k8Fo"
     }
+
+### `/message/send`
+
+| Method       | Description                                |
+|--------------|--------------------------------------------|
+| `POST`       | Sends a new message                        |
+
+Example:
+
+    curl -X POST -i http://localhost:8080/api/message/send --data '{
+        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    }'
+
+    {
+      "status": 401,
+      "message": "Unauthorized"
+    }
+
+Example:
+
+    curl -X POST -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNTQxMDIxNDMyfQ.niozdpQJW-WBsdSNfwkXsPraRbJR8tks4gZhKd9k8Fo' -i http://localhost:8080/api/message/send --data '{
+        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    }'
+
+    {
+        "status": 200,
+        "message": "Message successfully sent"
+    }

@@ -1,0 +1,10 @@
+{
+    "httpBody": [
+        {
+            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        },
+        {
+            "content": "Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        }
+    ]
+}
