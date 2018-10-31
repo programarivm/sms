@@ -1,0 +1,3 @@
+message_list:
+    path: /message/list
+    defaults: { _controller: AppBundle:Message:list }
