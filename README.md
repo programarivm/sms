@@ -5,6 +5,14 @@ SMS
 
 ...
 
+### Start the Docker Services
+
+    docker-compose up --build
+
+### Install the Dependencies
+
+    docker exec -it --user 1000:1000 sms_php_fpm composer install
+
 The `www-data` group needs write permissions to the `var` folder:
 
     sudo chmod 775 -R var
@@ -36,3 +44,8 @@ The `IPAddress` is obtained this way:
 Then run:
 
     docker exec -it --user 1000:1000 sms_php_fpm php bin/console database:bootstrap
+
+
+### Run the Tests
+
+	docker exec -it --user 1000:1000 sms_php_fpm php vendor/bin/phpunit
