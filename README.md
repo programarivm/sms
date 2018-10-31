@@ -5,6 +5,14 @@ SMS
 
 ...
 
+### Start the Docker Services
+
+    docker-compose up --build
+
+### Install the Dependencies
+
+    docker exec -it --user 1000:1000 sms_php_fpm composer install
+
 The `www-data` group needs write permissions to the `var` folder:
 
     sudo chmod 775 -R var
@@ -36,3 +44,29 @@ The `IPAddress` is obtained this way:
 Then run:
 
     docker exec -it --user 1000:1000 sms_php_fpm php bin/console database:bootstrap
+
+
+### Run the Tests
+
+	docker exec -it --user 1000:1000 sms_php_fpm php vendor/bin/phpunit
+
+
+## API Endpoints
+
+### `/auth`
+
+| Method       | Description                                |
+|--------------|--------------------------------------------|
+| `POST`        | Gets a new access token                    |
+
+Example:
+
+    curl -X POST -i http://localhost:8080/api/auth --data '{
+        "username": "bob",
+        "password": "password"
+    }'
+
+    {
+        "status": 200,
+        "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNTQxMDIxNDMyfQ.niozdpQJW-WBsdSNfwkXsPraRbJR8tks4gZhKd9k8Fo"
+    }

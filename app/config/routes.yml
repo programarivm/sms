@@ -1,3 +1,7 @@
+auth:
+    path: /auth
+    defaults: { _controller: AppBundle:Auth:auth }
+
 message_list:
     path: /message/list
     defaults: { _controller: AppBundle:Message:list }
