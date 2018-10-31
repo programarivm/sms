@@ -2,6 +2,7 @@
 
 namespace AppBundle\Command;
 
+use AppBundle\Entity\Message;
 use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
@@ -28,7 +29,7 @@ class DatabaseBootstrapCommand extends ContainerAwareCommand
         echo $this->createSchema();
 
         $output->writeln([
-            ' Creating users...',
+            ' Creating sample data...',
             '',
         ]);
 
@@ -42,12 +43,22 @@ class DatabaseBootstrapCommand extends ContainerAwareCommand
         $bob->setUsername('bob');
         $bob->setPassword('password');
 
+        $foo = new Message;
+        $foo->setContent('foo');
+        $foo->setAuthor($alice);
+
+        $bar = new Message;
+        $bar->setContent('bar');
+        $bar->setAuthor($bob);
+
         $em->persist($alice);
         $em->persist($bob);
+        $em->persist($foo);
+        $em->persist($bar);
         $em->flush();
 
         $output->writeln([
-            ' [OK] Sample users created successfully!',
+            ' [OK] Sample data created successfully!',
         ]);
     }
 
