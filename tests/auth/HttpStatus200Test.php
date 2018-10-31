@@ -21,7 +21,7 @@ class HttpStatus200Test extends WebTestCase
 
         $client->request(
             'POST',
-            'auth',
+            '/api/auth',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],

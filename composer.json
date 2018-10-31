@@ -23,6 +23,7 @@
         "php": ">=5.5.9",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/orm": "^2.5",
+        "firebase/php-jwt": "^5.0",
         "friendsofsymfony/rest-bundle": "^2.4",
         "incenteev/composer-parameter-handler": "^2.0",
         "jms/serializer-bundle": "^2.4",
