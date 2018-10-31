@@ -7,6 +7,7 @@ use Firebase\JWT\JWT;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class AuthController extends FOSRestController
 {
@@ -20,6 +21,10 @@ class AuthController extends FOSRestController
             'username' => $data->username,
             'password' => $data->password
         ]);
+
+        if (!$user) {
+            throw new NotFoundHttpException;
+        }
 
         $token = [
             'id' => $user->getId(),
