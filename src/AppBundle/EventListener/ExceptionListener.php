@@ -5,6 +5,7 @@ namespace AppBundle\EventListener;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 /**
  * Class ExceptionListener.
@@ -21,6 +22,8 @@ class ExceptionListener
 
         if ($exception instanceof NotFoundHttpException) {
             $message = 'Not Found';
+        } elseif ($exception instanceof UnauthorizedHttpException) {
+            $message = 'Unauthorized';
         }
 
         $response->setContent(

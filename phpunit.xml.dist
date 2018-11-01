@@ -10,11 +10,16 @@
     <php>
         <ini name="error_reporting" value="-1" />
         <server name="KERNEL_CLASS" value="AppKernel" />
+        <env name="APP_ENV" value="test"/>
+        <env name="JWT_SECRET" value="example_secret_for_testing_only"/>
     </php>
 
     <testsuites>
-        <testsuite name="Project Test Suite">
-            <directory>tests</directory>
+        <testsuite name="auth">
+            <directory>tests/auth</directory>
+        </testsuite>
+        <testsuite name="message/send">
+            <directory>tests/message/send</directory>
         </testsuite>
     </testsuites>
 
