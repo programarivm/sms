@@ -24,7 +24,7 @@ Copy and paste the following into your `app/config/parameters.yml` file:
 
     parameters:
         database_driver: pdo_mysql
-        database_host: 172.27.0.3
+        database_host: 172.27.0.5
         database_port: 3306
         database_name: sms
         database_user: root
@@ -33,6 +33,10 @@ Copy and paste the following into your `app/config/parameters.yml` file:
         mailer_host: 127.0.0.1
         mailer_user: null
         mailer_password: null
+        rabbitmq_host: 172.27.0.3
+        rabbitmq_port: 5672
+        rabbitmq_user: sms
+        rabbitmq_password: password
         secret: a2cc952fcbfc869e47c220e8944d73d9ccd89cba
 
 Please note, the value of `database_host` is replaced from `127.0.0.1` to `172.26.0.2`, which is the IP of the MySQL container.
