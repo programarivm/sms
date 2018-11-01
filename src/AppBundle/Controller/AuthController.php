@@ -33,7 +33,7 @@ class AuthController extends FOSRestController
 
         $data = [
             'status' => Response::HTTP_OK,
-            'access_token' => JWT::encode($token, getenv('JWT_SECRET'))
+            'access_token' => JWT::encode($token, $this->getParameter('jwt_secret'))
         ];
 
         $view = $this->view($data, 200);

@@ -11,7 +11,6 @@
         <ini name="error_reporting" value="-1" />
         <server name="KERNEL_CLASS" value="AppKernel" />
         <env name="APP_ENV" value="test"/>
-        <env name="JWT_SECRET" value="example_secret_for_testing_only"/>
     </php>
 
     <testsuites>

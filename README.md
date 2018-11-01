@@ -18,7 +18,7 @@ The `www-data` group needs write permissions to the `var` folder:
     sudo chmod 775 -R var
     sudo chown -R $USER:www-data var
 
-### Bootstrap the Testing Database
+### Parameters Setup
 
 Copy and paste the following into your `app/config/parameters.yml` file:
 
@@ -29,23 +29,30 @@ Copy and paste the following into your `app/config/parameters.yml` file:
         database_name: sms
         database_user: root
         database_password: password
+
+        jwt_secret: example_secret_for_testing_only
+
         mailer_transport: smtp
         mailer_host: 127.0.0.1
         mailer_user: null
         mailer_password: null
+
         rabbitmq_host: 172.27.0.3
         rabbitmq_port: 5672
         rabbitmq_user: sms
         rabbitmq_password: password
+        rabbitmq_vhost: /
+
         secret: a2cc952fcbfc869e47c220e8944d73d9ccd89cba
 
-Please note, the value of `database_host` is replaced from `127.0.0.1` to `172.26.0.2`, which is the IP of the MySQL container.
+Please note, the value of `database_host` is replaced from `127.0.0.1` to `172.26.0.2`, which is the IP of the MySQL container. The same thing goes for `rabbitmq_host`.
 
 The `IPAddress` is obtained this way:
 
-    docker inspect sms
+    docker inspect sms_mysql
+    docker inspect sms_rabbitmq_server
 
-Then run:
+### Bootstrap the Testing Database
 
     docker exec -it --user 1000:1000 sms_php_fpm php bin/console database:bootstrap
 

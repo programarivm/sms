@@ -4,6 +4,7 @@ namespace AppBundle\EventSubscriber;
 
 use AppBundle\Controller\TokenAuthenticatedController;
 use Firebase\JWT\JWT;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -11,6 +12,13 @@ use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class TokenSubscriber implements EventSubscriberInterface
 {
+    private $container;
+
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
+
     /**
      * @param FilterControllerEvent $event
      */
@@ -31,7 +39,7 @@ class TokenSubscriber implements EventSubscriberInterface
             $authorization = $event->getRequest()->headers->get('Authorization');
             $jwt = trim(preg_replace('/^(?:\s+)?Bearer\s/', '', $authorization));
             try {
-                $decoded = JWT::decode($jwt, getenv('JWT_SECRET'), ['HS256']);
+                $decoded = JWT::decode($jwt, $this->container->getParameter('jwt_secret'), ['HS256']);
             } catch (\Exception $e) {
                 throw new UnauthorizedHttpException('Unauthorized');
             }
