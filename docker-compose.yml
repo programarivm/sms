@@ -6,7 +6,7 @@ services:
       container_name: sms_php_fpm
       working_dir: /usr/share/nginx/sms
       networks:
-        - sms
+          - sms
       volumes:
           - ./:/usr/share/nginx/sms
 
@@ -15,7 +15,7 @@ services:
       container_name: sms_nginx
       working_dir: /usr/share/nginx/sms
       networks:
-        - sms
+          - sms
       ports:
           - "8080:80"
       volumes:
@@ -26,12 +26,25 @@ services:
       image: mysql:5.7
       container_name: sms_mysql
       networks:
-        - sms
+          - sms
       environment:
-        - MYSQL_DATABASE=sms
-        - MYSQL_ROOT_PASSWORD=password
-        - MYSQL_USER=sms
-        - MYSQL_PASSWORD=password
+          - MYSQL_DATABASE=sms
+          - MYSQL_ROOT_PASSWORD=password
+          - MYSQL_USER=sms
+          - MYSQL_PASSWORD=password
+
+  rabbitmq:
+      image: rabbitmq:3-management
+      container_name: sms_rabbitmq
+      networks:
+          - sms
+      ports:
+          - "15672:15672"
+          - "5672:5672"
+      environment:
+          - RABBITMQ_DEFAULT_USER=sms
+          - RABBITMQ_DEFAULT_PASS=password
+          - RABBITMQ_DEFAULT_VHOST=/
 
 networks:
   sms:

@@ -32,15 +32,26 @@ class MessageController extends FOSRestController implements TokenAuthenticatedC
         $errors = $validator->validate($message);
 
         if (count($errors) > 0) {
+
             $errorMessages = [];
             foreach ($errors as $error) {
                 $errorMessages[] = $error->getMessage();
             }
+
             $view = $this->view([
                 'status' => Response::HTTP_UNPROCESSABLE_ENTITY,
                 'message' => $errorMessages,
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
+
         } else {
+
+            $mssg = [
+                'telephone' => $data->telephone,
+                'content' => $data->content,
+            ];
+
+            $this->get('old_sound_rabbit_mq.send_message_producer')->publish(serialize($mssg));
+
             $view = $this->view([
                 'status' => Response::HTTP_OK,
                 'message' => 'Message successfully queued',

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Message\Create;
+namespace Tests\Message\Send;
 
 use Tests\TokenAuthenticatedWebTestCase;
 
