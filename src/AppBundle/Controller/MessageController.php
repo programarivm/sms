@@ -3,19 +3,28 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Message;
+use AppBundle\Entity\User;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class MessageController extends FOSRestController implements TokenAuthenticatedController
 {
-    public function listAction()
+    public function listingAction()
     {
-        $data = [
-            'status' => 200,
-            'message' => 'Foo',
-        ];
-        $view = $this->view($data, 200);
+        $messages = $this->getDoctrine()
+            ->getRepository(Message::class)
+            ->createQueryBuilder('m')
+            ->select('u.id as user_id, m.tel, m.content, m.status, m.publishedAt')
+            ->join(User::class, 'u', 'WITH', 'm.author = u.id')
+            ->orderBy('m.publishedAt', 'ASC')
+            ->getQuery()
+            ->getresult();
+
+        $view = $this->view([
+            'status' => Response::HTTP_OK,
+            'result' => $messages,
+        ], Response::HTTP_OK);
 
         return $this->handleView($view);
     }
