@@ -12,6 +12,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Message
 {
+    const STATUS_QUEUED = 'queued';
+
+    const STATUS_SENT = 'sent';
+
+    const STATUS_FAILED = 'failed';
+
     /**
      * @var int
      *
@@ -36,6 +42,13 @@ class Message
     private $content;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="text")
+     */
+    private $status;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(type="datetime", name="published_at")
@@ -53,6 +66,15 @@ class Message
     public function __construct()
     {
         $this->publishedAt = new \DateTime;
+    }
+
+    public static function getStatuses()
+    {
+        return [
+            self::STATUS_QUEUED,
+            self::STATUS_SENT,
+            self::STATUS_FAILED,
+        ];
     }
 
     /**
@@ -93,6 +115,22 @@ class Message
     public function setContent(string $content): void
     {
         $this->content = $content;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     */
+    public function setStatus(string $status): void
+    {
+        $this->status = $status;
     }
 
     /**

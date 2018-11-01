@@ -47,11 +47,13 @@ class DatabaseBootstrapCommand extends ContainerAwareCommand
         $foo->setTel('07123456789');
         $foo->setContent('foo');
         $foo->setAuthor($alice);
+        $foo->setStatus(Message::STATUS_QUEUED);
 
         $bar = new Message;
         $bar->setTel('07012345678');
         $bar->setContent('bar');
         $bar->setAuthor($bob);
+        $bar->setStatus(Message::STATUS_QUEUED);
 
         $em->persist($alice);
         $em->persist($bob);

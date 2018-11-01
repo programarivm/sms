@@ -98,5 +98,5 @@ Example:
 
     {
         "status": 200,
-        "message": "Message successfully sent"
+        "message": "Message successfully queued"
     }
