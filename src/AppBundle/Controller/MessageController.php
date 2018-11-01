@@ -34,7 +34,7 @@ class MessageController extends FOSRestController implements TokenAuthenticatedC
         $data = json_decode($request->getContent());
 
         $message = new Message();
-        $message->setTel($data->telephone);
+        $message->setTel($data->tel);
         $message->setContent($data->content);
 
         $validator = $this->get('validator');
@@ -55,7 +55,7 @@ class MessageController extends FOSRestController implements TokenAuthenticatedC
         } else {
 
             $mssg = [
-                'telephone' => $data->telephone,
+                'tel' => $data->tel,
                 'content' => $data->content,
             ];
 

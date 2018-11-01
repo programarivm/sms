@@ -10,10 +10,10 @@ class HttpStatus422Test extends TokenAuthenticatedWebTestCase
      * @dataProvider data
      * @test
      */
-    public function http_status_422($telephone, $content)
+    public function http_status_422($tel, $content)
     {
         $message = [
-            'telephone' => $telephone,
+            'tel' => $tel,
             'content' => $content,
         ];
 
@@ -40,7 +40,7 @@ class HttpStatus422Test extends TokenAuthenticatedWebTestCase
         $messages = json_decode(file_get_contents(__DIR__.'/data/http_status_422.json'))->httpBody;
         foreach ($messages as $message) {
             $data[] = [
-                $message->telephone,
+                $message->tel,
                 $message->content,
             ];
         }

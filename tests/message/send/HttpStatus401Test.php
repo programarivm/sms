@@ -15,10 +15,10 @@ class HttpStatus401Test extends TokenAuthenticatedWebTestCase
      * @dataProvider data
      * @test
      */
-    public function http_status_401($telephone, $content)
+    public function http_status_401($tel, $content)
     {
         $message = [
-            'telephone' => $telephone,
+            'tel' => $tel,
             'content' => $content,
         ];
 
@@ -45,7 +45,7 @@ class HttpStatus401Test extends TokenAuthenticatedWebTestCase
         $messages = json_decode(file_get_contents(__DIR__.'/data/http_status_200.json'))->httpBody;
         foreach ($messages as $message) {
             $data[] = [
-                $message->telephone,
+                $message->tel,
                 $message->content,
             ];
         }
