@@ -1,0 +1,12 @@
+AppBundle\Entity\Message:
+    properties:
+        tel:
+            - NotBlank: { message: 'The telephone number cannot be blank' }
+            - Regex:
+                pattern: '/^\+?[0-9]+$/'
+                message: 'The telephone number is not valid'
+        content:
+            - NotBlank: { message: 'The content cannot be blank' }
+            - Length:
+                max: 140
+                maxMessage: 'The content cannot have more than 140 characters'
