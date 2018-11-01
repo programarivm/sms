@@ -1,9 +1,24 @@
+## Introduction
+
+> Objective: Build a web app that allows to send tweet-sized text messages.
+
+Our web app is splitted into three loosely coupled parts -- repos that can run in different environments -- according to a microservice architecture.
+
+| Repo              | Description                                                                              |
+|-------------------|------------------------------------------------------------------------------------------|
+| `sms`             | JWT-authenticated API and RabbitMQ producer                                              |
+| `sms-spa`         | React SPA created with [create-react-app](https://github.com/facebook/create-react-app)  |
+| `sms-consumer`    | RabbitMQ consumer. PHP script using [`php-amqplib`](https://github.com/php-amqplib/php-amqplib)                                                     |
+
+> *Note*: The RabbitMQ producer does not share its codebase with the consumer.
+
+More specifically, the Symfony producer is built with `php-amqplib/rabbitmq-bundle`. However, the consumer in `sms-consumer` is a PHP script written with `php-amqplib` -- for the sake of simplicity we are considering not to use a framework on that repo.
+
+
 SMS
 ===
 
-> TODO. Write the documentation explaining how to run the app.
-
-...
+This is the `sms` repo: A JWT-authenticated API that plays the role of a RabbitMQ producer also.
 
 ### Start the Docker Services
 
@@ -50,7 +65,7 @@ Please note, the value of `database_host` is replaced from `127.0.0.1` to `172.2
 The `IPAddress` is obtained this way:
 
     docker inspect sms_mysql
-    docker inspect sms_rabbitmq_server
+    docker inspect sms_rabbitmq
 
 ### Bootstrap the Testing Database
 
