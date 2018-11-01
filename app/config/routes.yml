@@ -5,3 +5,7 @@ auth:
 message_list:
     path: /message/list
     defaults: { _controller: AppBundle:Message:list }
+
+message_send:
+    path: /message/send
+    defaults: { _controller: AppBundle:Message:send }
