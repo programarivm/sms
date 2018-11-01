@@ -1,11 +1,11 @@
 {
     "httpBody": [
         {
-            "telephone": "07012345678",
+            "tel": "07012345678",
             "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
         },
         {
-            "telephone": "07987654321",
+            "tel": "07987654321",
             "content": "Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
         }
     ]

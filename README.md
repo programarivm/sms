@@ -2,17 +2,17 @@
 
 > Objective: Build a web app that allows to send tweet-sized text messages.
 
-Our web app is splitted into three loosely coupled parts -- repos that can run in different environments -- according to a microservice architecture.
+This web app is splitted into three loosely coupled parts -- repos that can run in different environments -- according to a microservice architecture.
 
-| Repo              | Description                                                                              |
-|-------------------|------------------------------------------------------------------------------------------|
-| `sms`             | JWT-authenticated API and RabbitMQ producer                                              |
-| `sms-spa`         | React SPA created with [create-react-app](https://github.com/facebook/create-react-app)  |
-| `sms-consumer`    | RabbitMQ consumer. PHP script using [`php-amqplib`](https://github.com/php-amqplib/php-amqplib)                                                     |
+| Repo              | Description                                                                                |
+|-------------------|--------------------------------------------------------------------------------------------|
+| `sms`             | JWT-authenticated API and RabbitMQ producer                                                |
+| `sms-spa`         | React SPA created with [`create-react-app`](https://github.com/facebook/create-react-app)  |
+| `sms-consumer`    | RabbitMQ consumer. PHP script using [`php-amqplib`](https://github.com/php-amqplib/php-amqplib)                                                      |
 
-> *Note*: The RabbitMQ producer does not share its codebase with the consumer.
+> **Note**: The RabbitMQ producer does not share its codebase with the consumer.
 
-More specifically, the Symfony producer is built with `php-amqplib/rabbitmq-bundle`. However, the consumer in `sms-consumer` is a PHP script written with `php-amqplib` -- for the sake of simplicity we are considering not to use a framework on that repo.
+More specifically, the Symfony producer is built with `php-amqplib/rabbitmq-bundle`. However, the consumer in `sms-consumer` is a PHP script written with `php-amqplib` -- for the sake of simplicity we are considering not to use a framework in that repo.
 
 
 SMS
@@ -106,7 +106,7 @@ Example:
 Example:
 
     curl -X POST -i http://localhost:8080/api/message/send --data '{
-        "telephone": "07412345678",
+        "tel": "07412345678",
         "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     }'
 
@@ -118,23 +118,50 @@ Example:
 Example:
 
     curl -X POST -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNTQxMDIxNDMyfQ.niozdpQJW-WBsdSNfwkXsPraRbJR8tks4gZhKd9k8Fo' -i http://localhost:8080/api/message/send --data '{
-        "telephone": "foo",
+        "tel": "foo",
         "content": ""
     }'
 
     {
         "status": 422,
-        "message": ["The telephone number is not valid", "The content cannot be blank"]
+        "message": ["The tel number is not valid", "The content cannot be blank"]
     }
 
 Example:
 
     curl -X POST -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNTQxMDIxNDMyfQ.niozdpQJW-WBsdSNfwkXsPraRbJR8tks4gZhKd9k8Fo' -i http://localhost:8080/api/message/send --data '{
-        "telephone": "07412345678",
+        "tel": "07412345678",
         "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     }'
 
     {
         "status": 200,
         "message": "Message successfully queued"
+    }
+
+### `/message/listing`
+
+| Method       | Description                                |
+|--------------|--------------------------------------------|
+| `GET`        | Gets a listing of all SMS messages sent    |
+
+Example:
+
+    curl -X GET -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNTQxMDIxNDMyfQ.niozdpQJW-WBsdSNfwkXsPraRbJR8tks4gZhKd9k8Fo' -i http://localhost:8080/api/message/listing
+
+    {
+      "status": 200,
+      "result": [{
+        "user_id": 1,
+        "tel": "07123456789",
+        "content": "foo",
+        "status": "queued",
+        "publishedAt": "2018-11-01T22:47:13+00:00"
+      }, {
+        "user_id": 2,
+        "tel": "07012345678",
+        "content": "bar",
+        "status": "queued",
+        "publishedAt": "2018-11-01T22:47:13+00:00"
+      }]
     }
