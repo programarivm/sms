@@ -13,8 +13,11 @@
     </php>
 
     <testsuites>
-        <testsuite name="Project Test Suite">
-            <directory>tests</directory>
+        <testsuite name="auth">
+            <directory>tests/auth</directory>
+        </testsuite>
+        <testsuite name="message/send">
+            <directory>tests/message/send</directory>
         </testsuite>
     </testsuites>
 

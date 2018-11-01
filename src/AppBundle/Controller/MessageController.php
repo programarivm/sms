@@ -7,7 +7,7 @@ use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class MessageController extends FOSRestController
+class MessageController extends FOSRestController implements TokenAuthenticatedController
 {
     public function listAction()
     {
