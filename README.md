@@ -2,7 +2,7 @@
 
 > Objective: Build a web app that allows to send tweet-sized text messages.
 
-This web app is splitted into three loosely coupled parts -- repos that can run in different environments -- according to a microservice architecture.
+This web app is split into three loosely coupled parts -- repos that can run in different environments -- according to a microservice architecture.
 
 | Repo              | Description                                                                                |
 |-------------------|--------------------------------------------------------------------------------------------|
