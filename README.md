@@ -18,7 +18,7 @@ More specifically, the Symfony producer in `sms` is built with `php-amqplib/rabb
 SMS
 ===
 
-This is the `sms` repo, a JWT-authenticated API that plays the role of a RabbitMQ producer also. Now, follow the steps detailed next to get the app running.
+This is the `sms` repo, a JWT-authenticated API that plays the role of a RabbitMQ producer also.
 
 ### Start the Docker Services
 
