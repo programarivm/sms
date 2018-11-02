@@ -12,13 +12,13 @@ This web app is splitted into three loosely coupled parts -- repos that can run 
 
 > **Note**: The RabbitMQ producer does not share its codebase with the consumer.
 
-More specifically, the Symfony producer is built with `php-amqplib/rabbitmq-bundle`. However, the consumer in `sms-consumer` is a PHP script written with `php-amqplib` -- for the sake of simplicity we are considering not to use a framework in that repo.
+More specifically, the Symfony producer in `sms` is built with `php-amqplib/rabbitmq-bundle`. However, the consumer in `sms-consumer` is a PHP script written with `php-amqplib` -- for the sake of simplicity we are considering not to use a framework in that repo.
 
 
 SMS
 ===
 
-This is the `sms` repo: A JWT-authenticated API that plays the role of a RabbitMQ producer also.
+This is the `sms` repo, a JWT-authenticated API that plays the role of a RabbitMQ producer also. Now, follow the steps detailed next to get the app running.
 
 ### Start the Docker Services
 
@@ -144,6 +144,15 @@ Example:
 | Method       | Description                                |
 |--------------|--------------------------------------------|
 | `GET`        | Gets a listing of all SMS messages sent    |
+
+Example:
+
+    curl -X GET -i http://localhost:8080/api/message/listing
+
+    {
+        "status": 401,
+        "message": "Unauthorized"
+    }
 
 Example:
 
