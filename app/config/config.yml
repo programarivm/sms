@@ -97,6 +97,6 @@ old_sound_rabbit_mq:
             # See https://www.rabbitmq.com/uri-spec.html on how to encode values.
             url: 'amqp://sms:password@localhost:5672/vhost?lazy=1&connection_timeout=6'
     producers:
-        send_message:
+        send_sms:
             connection: default
-            exchange_options: {name: 'send-message', type: direct}
+            exchange_options: {name: 'send_sms', type: direct}

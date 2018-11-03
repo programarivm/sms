@@ -59,7 +59,7 @@ class MessageController extends FOSRestController implements TokenAuthenticatedC
                 'content' => $data->content,
             ];
 
-            $this->get('old_sound_rabbit_mq.send_message_producer')->publish(serialize($mssg));
+            $this->get('old_sound_rabbit_mq.send_sms_producer')->publish(serialize($mssg));
 
             $view = $this->view([
                 'status' => Response::HTTP_OK,
