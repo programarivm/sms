@@ -15,8 +15,7 @@ This web app is split into three loosely coupled parts -- repos that can run in 
 More specifically, the Symfony producer in `sms` is built with `php-amqplib/rabbitmq-bundle`. However, the consumer in `sms-consumer` is a PHP script written with `php-amqplib` -- for the sake of simplicity we are considering not to use a framework in that repo.
 
 
-SMS
-===
+# SMS
 
 This is the `sms` repo, a JWT-authenticated API that plays the role of a RabbitMQ producer also.
 
@@ -106,7 +105,7 @@ Example:
 Example:
 
     curl -X POST -i http://localhost:8080/api/message/send --data '{
-        "tel": "07412345678",
+        "tel": "+447XXXXXXXXX",
         "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     }'
 
@@ -130,7 +129,7 @@ Example:
 Example:
 
     curl -X POST -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNTQxMDIxNDMyfQ.niozdpQJW-WBsdSNfwkXsPraRbJR8tks4gZhKd9k8Fo' -i http://localhost:8080/api/message/send --data '{
-        "tel": "07412345678",
+        "tel": "+447XXXXXXXXX",
         "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     }'
 
@@ -162,15 +161,26 @@ Example:
       "status": 200,
       "result": [{
         "user_id": 1,
-        "tel": "07123456789",
+        "tel": "+447XXXXXXXXX",
         "content": "foo",
         "status": "queued",
         "publishedAt": "2018-11-01T22:47:13+00:00"
       }, {
         "user_id": 2,
-        "tel": "07012345678",
+        "tel": "+447XXXXXXXXX",
         "content": "bar",
         "status": "queued",
         "publishedAt": "2018-11-01T22:47:13+00:00"
       }]
     }
+
+### Contributions
+
+Would you help make this library better? Contributions are welcome.
+
+- Feel free to send a pull request
+- Drop an email at info@programarivm.com with the subject "SMS Contributions"
+- Leave me a comment on [Twitter](https://twitter.com/programarivm)
+- Say hello on [Google+](https://plus.google.com/+Programarivm)
+
+Many thanks.
