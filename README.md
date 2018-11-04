@@ -1,22 +1,23 @@
 ## Introduction
 
+<p align="center">
+	<img src="https://github.com/programarivm/sms/blob/master/resources/cubes.jpg" />
+</p>
+
 > Objective: Build a web app that allows to send tweet-sized text messages.
 
-This web app is split into three loosely coupled parts -- repos that can run in different environments -- according to a microservice architecture.
+This web app is split into four loosely coupled parts -- repos that can run in different environments -- according to a microservice architecture.
 
-| Repo                           | Description                                                                                |
-|--------------------------------|--------------------------------------------------------------------------------------------|
-| [`programarivm/sms`](https://github.com/programarivm/sms)             | JWT-authenticated API and RabbitMQ producer                                                |
-| [`programarivm/sms-spa`](https://github.com/programarivm/sms-spa)         | React SPA created with [`create-react-app`](https://github.com/facebook/create-react-app)  |
-| [`programarivm/sms-consumer`](https://github.com/programarivm/sms-consumer)    | RabbitMQ consumer. PHP script using [`php-amqplib`](https://github.com/php-amqplib/php-amqplib)                                                      |
-
-The RabbitMQ producer does not share its codebase with the consumer.
-
-More specifically, the Symfony producer in `sms` is built with `php-amqplib/rabbitmq-bundle`. However, the consumer in `sms-consumer` is a PHP script written with `php-amqplib` -- for the sake of simplicity we are considering not to use a framework in that repo.
+| Repo                                                                           | Description                                                                                |
+|--------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
+| [`programarivm/sms`](https://github.com/programarivm/sms)                      | JWT-authenticated API and RabbitMQ producer                                                |
+| [`programarivm/sms-spa`](https://github.com/programarivm/sms-spa)              | React SPA created with [`create-react-app`](https://github.com/facebook/create-react-app)  |
+| [`programarivm/sms-consumer`](https://github.com/programarivm/sms-consumer)    | RabbitMQ consumer                                                                          |
+| [`programarivm/sms-twilio-webhook`](https://github.com/programarivm/sms-twilio-webook)  | Twilio's webhook to track the delivery status of the SMS messages                          |
 
 # SMS
 
-This is the `sms` repo, a JWT-authenticated API that plays the role of a RabbitMQ producer also.
+This is the `programarivm/sms` repo, a JWT-authenticated API that plays the role of a RabbitMQ producer also.
 
 ### Start the Docker Services
 
@@ -175,7 +176,7 @@ Example:
 
 ### Contributions
 
-Would you help make this library better? Contributions are welcome.
+Contributions are welcome.
 
 - Feel free to send a pull request
 - Drop an email at info@programarivm.com with the subject "SMS Contributions"
