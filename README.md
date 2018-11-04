@@ -4,16 +4,15 @@
 
 This web app is split into three loosely coupled parts -- repos that can run in different environments -- according to a microservice architecture.
 
-| Repo              | Description                                                                                |
-|-------------------|--------------------------------------------------------------------------------------------|
-| `sms`             | JWT-authenticated API and RabbitMQ producer                                                |
-| `sms-spa`         | React SPA created with [`create-react-app`](https://github.com/facebook/create-react-app)  |
-| `sms-consumer`    | RabbitMQ consumer. PHP script using [`php-amqplib`](https://github.com/php-amqplib/php-amqplib)                                                      |
+| Repo                           | Description                                                                                |
+|--------------------------------|--------------------------------------------------------------------------------------------|
+| [`programarivm/sms`](https://github.com/programarivm/sms)             | JWT-authenticated API and RabbitMQ producer                                                |
+| [`programarivm/sms-spa`](https://github.com/programarivm/sms-spa)         | React SPA created with [`create-react-app`](https://github.com/facebook/create-react-app)  |
+| [`programarivm/sms-consumer`](https://github.com/programarivm/sms-consumer)    | RabbitMQ consumer. PHP script using [`php-amqplib`](https://github.com/php-amqplib/php-amqplib)                                                      |
 
-> **Note**: The RabbitMQ producer does not share its codebase with the consumer.
+The RabbitMQ producer does not share its codebase with the consumer.
 
 More specifically, the Symfony producer in `sms` is built with `php-amqplib/rabbitmq-bundle`. However, the consumer in `sms-consumer` is a PHP script written with `php-amqplib` -- for the sake of simplicity we are considering not to use a framework in that repo.
-
 
 # SMS
 
